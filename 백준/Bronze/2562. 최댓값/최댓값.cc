@@ -1,19 +1,13 @@
-#include <iostream>
- 
+#include <bits/stdc++.h>
 using namespace std;
- 
-int main() {
-    int value;
-    int max = -1, idx;
+
+int main(void) {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    int arr[9];
+    for(int i = 0; i < 9; ++i) cin >> arr[i];
     
-    for(int i = 0; i < 9; ++i) {
-        cin >> value;
-        
-        if(value > max) {
-            max = value;
-            idx = i;
-        }
-    }
-    
-    cout << max << '\n' << idx + 1;
+    cout << *max_element(arr, arr+9) << '\n';
+    cout << max_element(arr, arr+9) - arr + 1;
 }
