@@ -12,7 +12,6 @@ using namespace std;
         break;
     c. !stack.empty && stack.top == '('
         stack.pop
-
 */
 
 int main(void) {
