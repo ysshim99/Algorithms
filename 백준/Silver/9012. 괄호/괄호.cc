@@ -7,10 +7,12 @@ using namespace std;
 2. `)`
     a. stack.empty
         correct = false;
-    b. !stack.empty && stack.top == '('
-        stack.pop
-    c. !stack.empty && stack.top == ')'
+    b. !stack.empty && stack.top == ')'
         correct = false;
+        break;
+    c. !stack.empty && stack.top == '('
+        stack.pop
+
 */
 
 int main(void) {
@@ -25,22 +27,22 @@ int main(void) {
         cin >> input;
         
         stack<char> S;
-        bool correct = true;
+        bool isValid = true;
         
         for(auto c : input) {
             if(c == '(') S.push(c);
             else {
-                if(S.empty()) correct = false;
-                else {
-                    if(S.top() == '(') S.pop();
-                    else correct = false;
+                if(S.empty() || S.top() != '(') {
+                    isValid = false;
+                    break;
                 }
+                S.pop();
             }
         }
         
-        if(!S.empty()) correct = false;
+        if(!S.empty()) isValid = false;
         
-        if(correct) cout << "YES\n";
+        if(isValid) cout << "YES\n";
         else cout << "NO\n";
     }
 }
