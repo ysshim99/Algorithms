@@ -56,7 +56,7 @@ int main(void) {
             int area = 0;
             
             while(!Q.empty()) {
-                pair<int, int> cur = Q.front();
+                auto cur = Q.front();
                 Q.pop();
                 area++;
                 
