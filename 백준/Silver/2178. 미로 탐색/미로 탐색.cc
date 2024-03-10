@@ -15,10 +15,12 @@ queue가 비어있기 전까지 계속 수행
         dist + 1
 
 최종 답은 dist + 1 해야 한다.
+
+dist : -1로 초기화하여 해당 원소를 방문했는지 여부도 같이 알 수 있다.
 */
 
 string board[100];
-int dist[100][100] = {-1, };
+int dist[100][100];
 int dx[4] = {0, 0, 1, -1};
 int dy[4] = {1, -1, 0, 0};
 
@@ -32,7 +34,8 @@ int main(void) {
     for(int i = 0; i < N; ++i)
         cin >> board[i];
     
-    for(int i = 0; i < N; ++i) fill(dist[i], dist[i]+M, -1);
+    for(int i = 0; i < N; ++i) 
+        fill(dist[i], dist[i]+M, -1);
     
     queue<pair<int, int> > Q;
     Q.push({0, 0});
