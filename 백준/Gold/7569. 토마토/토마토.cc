@@ -1,6 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+익은 토마토(board = 1)는 queue에 push 하여 해당 점부터 BFS를 수행한다.
+익지 않은 토마토(board = 0)는 dist = -1로 한다.
+
+마지막에 답을 출력할 땐, 거리가 가장 먼 것을 찾는다.
+단, 익지 않은 토마토(board = -1)가 있다면, -1을 출력한다.
+
+주의해야 할 점은 인자를 받을 때 `높이,세로,가로` 순이라는 점이다.
+
+tuple의 인자를 가져오는 방법은 두 가지가 있다. 
+1. get 함수 이용하기
+    x_i = get<i>(tuple)
+2. tie 함수 이용하기
+    tie(x, y, z) = tuple
+*/
+
 int board[102][102][102];
 int dist[102][102][102];
 int dx[6] = {1, -1, 0, 0, 0, 0};
