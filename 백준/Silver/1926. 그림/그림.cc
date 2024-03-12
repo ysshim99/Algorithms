@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// pair.first(second) -> pair.X(Y) 로 사용
-#define X first
-#define Y second
+// pair.first(second) -> pair.Y(X)로 사용
+#define Y first
+#define X second
 
 /*
 모든 점에 대해서
@@ -24,8 +24,8 @@ area : 조사하는 그림의 넓이
 maxArea : board에서 가장 넓은 그림의 넓이
 */
 
-int board[500][500];
-bool visited[500][500];
+int board[502][502];
+int visited[502][502];
 int dx[4] = {0, 0, 1, -1};
 int dy[4] = {1, -1, 0, 0};
 
@@ -40,35 +40,32 @@ int main(void) {
         for(int j = 0; j < m; ++j)
             cin >> board[i][j];
     
-    int num = 0;
+    int cnt = 0;
     int maxArea = 0;
-    
     for(int i = 0; i < n; ++i) {
         for(int j = 0; j < m; ++j) {
             if(board[i][j] == 0 || visited[i][j]) continue;
             
-            num++;
-            
+            cnt++;
             queue<pair<int, int> > Q;
             Q.push({i, j});
             visited[i][j] = true;
             
             int area = 0;
-            
             while(!Q.empty()) {
                 auto cur = Q.front();
                 Q.pop();
                 area++;
                 
                 for(int dir = 0; dir < 4; ++dir) {
-                    int nx = cur.X + dx[dir];
                     int ny = cur.Y + dy[dir];
+                    int nx = cur.X + dx[dir];
                     
-                    if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-                    if(board[nx][ny] == 0 || visited[nx][ny]) continue;
+                    if(ny < 0 || ny >= n || nx < 0 || nx >= m) continue;
+                    if(board[ny][nx] == 0 || visited[ny][nx]) continue;
                     
-                    Q.push({nx, ny});
-                    visited[nx][ny] = true;
+                    Q.push({ny, nx});
+                    visited[ny][nx] = true;
                 }
             }
             
@@ -76,5 +73,5 @@ int main(void) {
         }
     }
     
-    cout << num << '\n' << maxArea;
+    cout << cnt << '\n' << maxArea;
 }
