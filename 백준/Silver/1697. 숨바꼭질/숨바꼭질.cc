@@ -21,18 +21,21 @@ int main(void) {
     queue<int> Q;
     Q.push(N);
     
-    while(dist[K] == -1) {
+    while(!Q.empty()) {
         auto cur = Q.front();
         Q.pop();
+        
+        if(cur == K) {
+            cout << dist[K];
+            return 0;
+        }
         
         for(int nxt : {cur-1, cur+1, 2*cur}) {
             if(nxt < 0 || nxt > 100000) continue;
             if(dist[nxt] >= 0) continue;
             
-            dist[nxt] = dist[cur] + 1;            
+            dist[nxt] = dist[cur] + 1;
             Q.push(nxt);
         }
     }
-    
-    cout << dist[K];
 }
