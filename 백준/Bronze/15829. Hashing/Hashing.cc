@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int r = 31;
+long long r = 1;
 int M = 1234567891;
+long long hashValue;
 
 int main(void) {
     ios::sync_with_stdio(0);
@@ -12,10 +13,11 @@ int main(void) {
     string input; // 소문자로만 이루어진 문자열
     cin >> L >> input;
 
-    int sum = 0;
     for(int i = 0; i < L; ++i) {
-        sum += (input[i] - 'a' + 1) * pow(r, i);
+        hashValue += ((input[i] - 'a' + 1) * r) % M;
+        hashValue %= M;
+        r = (r * 31) % M;
     }
 
-    cout << sum % M;
+    cout << hashValue;
 }
