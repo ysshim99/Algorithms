@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// pair.first(second) -> pair.X(Y) 로 사용
-#define X first
-#define Y second
+// pair.first(second) -> pair.Y(X) 로 사용
+#define Y first
+#define X second
 
 /*
 익은 토마토(board = 1)는 queue에 push하여 해당 점부터 BFS를 수행한다.
@@ -48,14 +48,14 @@ int main(void) {
         Q.pop();
         
         for(int dir = 0; dir < 4; ++dir) {
-            int nx = cur.X + dx[dir];
             int ny = cur.Y + dy[dir];
+            int nx = cur.X + dx[dir];
             
-            if(nx < 0 || nx >= N || ny < 0 || ny >= M) continue;
-            if(dist[nx][ny] >= 0) continue;
+            if(ny < 0 || ny >= N || nx < 0 || nx >= M) continue;
+            if(dist[ny][nx] >= 0) continue;
             
-            dist[nx][ny] = dist[cur.X][cur.Y] + 1;
-            Q.push({nx, ny});
+            dist[ny][nx] = dist[cur.Y][cur.X] + 1;
+            Q.push({ny, nx});
         }
     }
     
