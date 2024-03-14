@@ -46,16 +46,15 @@ int main(void) {
 	}
 
 	// 적록색약이 아닌 사람
-	int cnt = 0;
+	int cnt1 = 0;
 	for(int i = 0; i < N; ++i) {
 		for(int j = 0; j < N; ++j) {
 			if(visited[i][j] == false) {
 				bfs(i, j);
-				cnt++;
+				cnt1++;
 			}
 		}
 	}
-	cout << cnt << ' ';
 
 	// 적록색약인 사람
 	for(int i = 0; i < N; ++i) {
@@ -67,14 +66,14 @@ int main(void) {
 		fill(visited[i], visited[i]+102, false);
 	}
 
-	cnt = 0;
+	int cnt2 = 0;
 	for(int i = 0; i < N; ++i) {
 		for(int j = 0; j < N; ++j) {
 			if(visited[i][j] == false) {
 				bfs(i, j);
-				cnt++;
+				cnt2++;
 			}
 		}
 	}
-	cout << cnt;
+	cout << cnt1 << ' ' << cnt2;
 }
