@@ -2,26 +2,30 @@
 using namespace std;
 
 int selected[10];
-// 이 문제는 오름차순으로 선택하므로 따로 used 배열을 선언하지 않아도 됨.
+bool used[10];
 
 int N, M;
 
-// start ~ N까지 remain개 골라야 함
-void func(int start, int remain) {
-  if(remain == 0) {
-    for(int i = 0; i < M; ++i) {
-      cout << selected[i] << ' ';
-    }
+// 현재까지 cnt개 수 선택
+void func(int cnt) {
+  if(cnt == M) {
+    for(int i = 0; i < M; ++i) cout << selected[i] << ' ';
     cout << '\n';
     return;
   }
 
+  int start = 1;
+  if(cnt != 0) start = selected[cnt-1] + 1;
+
   for(int i = start; i <= N; ++i) {
-    selected[M-remain] = i;
-    func(i+1, remain-1);
+    if(!used[i]) {
+      selected[cnt] = i;
+      used[i] = true;
+      func(cnt+1);
+      used[i] = false;
+    }
   }
 }
-
 
 int main(void) {
   ios::sync_with_stdio(0);
@@ -29,5 +33,5 @@ int main(void) {
 
   cin >> N >> M;
 
-  func(1, M);
+  func(0);
 }
