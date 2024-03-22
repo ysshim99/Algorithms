@@ -29,9 +29,7 @@ int main(void) {
 
   cin >> N >> M;
 
-  for(int i = 0; i <N; ++i) {
-    cin >> input[i];
-  }
+  for(int i = 0; i <N; ++i) cin >> input[i];
   sort(input, input+N);
 
   func(0);
