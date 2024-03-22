@@ -6,21 +6,20 @@ int input[10];
 
 int N, M;
 
-// input[start] ~ input[N] 중에서 remain개 선택
-// 입력으로 받은 수는 input[1] ~ input[N]에 저장됨
-void func(int start, int remain) {
-  if(remain == 0) {
-    for(int i = 0; i < M; ++i) cout << selected[i] << ' ';
+// 현재까지 cnt개 수 선택
+void func(int cnt) {
+  if(cnt == M) {
+    for(int i = 0; i < M; ++i) cout << input[selected[i]] << ' ';
     cout << '\n';
     return;
   }
 
   int prev = -1;
-  for(int i = start; i <= N; ++i) {
+  for(int i = 0; i < N; ++i) {
     if(prev != input[i]) {
-      selected[M-remain] = input[i];
+      selected[cnt] = i;
       prev = input[i];
-      func(1, remain-1);
+      func(cnt+1);
     }
   }
 }
@@ -31,8 +30,8 @@ int main(void) {
 
   cin >> N >> M;
 
-  for(int i = 0; i < N; ++i) cin >> input[i+1];
-  sort(input+1, input+1+N);
+  for(int i = 0; i < N; ++i) cin >> input[i];
+  sort(input, input+N);
 
-  func(1, M);
+  func(0);
 }
