@@ -7,9 +7,10 @@ int input[10];
 
 int N, M;
 
-void func(int remain) {
-  if(remain == 0) {
-    for(int i = 0; i < M; ++i) cout << selected[i] << ' ';
+// 현재까지 cnt개 수 선택
+void func(int cnt) {
+  if(cnt == M) {
+    for(int i = 0; i < M; ++i) cout << input[selected[i]] << ' ';
     cout << '\n';
     return;
   }
@@ -17,10 +18,10 @@ void func(int remain) {
   int prev = -1;
   for(int i = 0; i < N; ++i) {
     if(!used[i] && prev != input[i]) {
-      selected[M-remain] = input[i];
+      selected[cnt] = i;
       prev = input[i];
       used[i] = true;
-      func(remain-1);
+      func(cnt+1);
       used[i] = false;
     }
   }
@@ -32,10 +33,8 @@ int main(void) {
 
   cin >> N >> M;
 
-  for(int i = 0; i < N; ++i) {
-    cin >> input[i];
-  }
+  for(int i = 0; i < N; ++i) cin >> input[i];
   sort(input, input+N);
 
-  func(M);
+  func(0);
 }
