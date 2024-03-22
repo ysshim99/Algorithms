@@ -8,17 +8,16 @@ int input[10];
 int N, M;
 
 // 현재까지 cnt개 수 선택
-// 입력으로 받은 수는 input[1] ~ input[N]에 저장됨
 void func(int cnt) {
   if(cnt == M) {
-    for(int i = 0; i < M; ++i) cout << selected[i] << ' ';
+    for(int i = 0; i < M; ++i) cout << input[selected[i]] << ' ';
     cout << '\n';
     return;
   }
 
-  for(int i = 1; i <= N; ++i) {
+  for(int i = 0; i < N; ++i) {
     if(!used[i]) {
-      selected[cnt] = input[i];
+      selected[cnt] = i;
       used[i] = true;
       func(cnt+1);
       used[i] = false;
@@ -32,10 +31,8 @@ int main(void) {
 
   cin >> N >> M;
 
-  for(int i = 1; i <= N; ++i) {
-    cin >> input[i];
-  }
-  sort(input+1, input+1+N);
+  for(int i = 0; i < N; ++i) cin >> input[i];
+  sort(input, input+N);
 
   func(0);
 }
