@@ -37,7 +37,7 @@ int main(void) {
   for(int i = 0; i < N; ++i) {
     cin >> input[i+1];
   }
-  sort(input+1, input+N+1);
+  sort(input+1, input+1+N);
 
   func(1, M);
 }
