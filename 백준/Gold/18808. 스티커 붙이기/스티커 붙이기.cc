@@ -76,7 +76,8 @@ int main(void) {
         cin >> sticker[i][j];
       }
     }
-    
+
+    // sticker 붙이기
     for(int rot = 0; rot < 4; ++rot) {
       bool isPasted = tryPaste();
       if(isPasted) break;
