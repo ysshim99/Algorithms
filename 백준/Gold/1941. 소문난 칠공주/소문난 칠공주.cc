@@ -33,17 +33,15 @@ int main(void) {
     }
 
     for(int i = 0; i < 25; ++i) {
-      if(!mask[i]) {
-        int y = i/5;
-        int x = i%5;
+      if(mask[i]) continue;
 
-        selected[y][x] = true;
+      int y = i / 5;
+      int x = i % 5;
+      selected[y][x] = true;
 
-        if(q.empty()) {
-          visited[y][x] = true;
-          q.push({y, x});
-        }
-      }
+      if(q.empty()) {
+        visited[y][x] = true;
+        q.push({y, x});
     }
 
     int cnt = 0; // cnt: 소문난 칠공주 중 이다솜파 학생 수
