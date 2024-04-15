@@ -1,19 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define X first
+#define Y second
+
+int N;
+
 int main(void) {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    
-    int N;
-    cin >> N;
-    
-    vector<pair<int, int> > point(N);
-    for(int i = 0; i < N; ++i)
-        cin >> point[i].first >> point[i].second;
-    
-    sort(point.begin(), point.end());
-    
-    for(int i = 0; i < N; ++i)
-        cout << point[i].first << ' ' << point[i].second << '\n';
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  
+  cin >> N;
+  
+  pair<int, int> pos[N];
+  for (auto& cur : pos) cin >> cur.X >> cur.Y;
+  
+  sort(pos, pos+N);
+  
+  for (auto cur : pos) cout << cur.X << ' ' << cur.Y << '\n';
 }
